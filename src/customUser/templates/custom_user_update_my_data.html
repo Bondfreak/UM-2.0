@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<form class="form-signin" enctype='multipart/form-data' method="post">{% csrf_token %}
+
+    <h1 class="h3 mb-3 font-weight-normal">Account</h1>
+
+    {% include 'snippets/message.html' %}
+
+    <div class="avatar"><img src="{{ form.initial.profile_picture.url }}" alt="..." class="img-fluid">
+    </div>
+
+    <h5 class="font-weight-normal">Email</h5>
+    <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus
+        value="{{form.initial.email}}">
+
+    <h5 class="font-weight-normal">First name</h5>
+    <input type="text" name="first_name" id="inputFirst_name" class="form-control" placeholder="Firstname"
+        value="{{form.initial.first_name}}">
+
+    <h5 class="font-weight-normal">Last name</h5>
+    <input type="text" name="last_name" id="inputLast_name" class="form-control" placeholder="Lastname"
+        value="{{form.initial.last_name}}">
+
+    <div class="form-row field-profile_picture" enctype='multipart/form-data'>
+        <div>
+            <label class="required" for="id_profile_picture">Profile picture:</label>
+            <p class="file-upload">Currently: <a>{{form.initial.profile_picture}}</a><br>
+                <input type="file" name="profile_picture" accept="image/*" id="id_profile_picture"></p>
+        </div>
+    </div>
+
+
+    {% include 'snippets/error_messages.html' %}
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Save changes</button>
+
+</form>
+
+<div class=d-flex flex-column>
+    <a class="m-auto" href="{% url 'password_change' %}">Change password</a>
+</div>
+
+{% endblock content %}

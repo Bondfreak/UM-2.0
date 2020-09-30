@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<form class="form-signin" enctype='multipart/form-data' method="post">{% csrf_token %}
+
+    <h1 class="h3 mb-3 font-weight-normal">Account</h1>
+    <br>
+    <h5 class="h5 mb-3 font-weight-normal">{{custom_user.email}}</h5>
+
+    {% include 'snippets/message.html' %}
+
+    <h5 class="font-weight-normal">First name</h5>
+    <input type="text" name="first_name" id="inputFirst_name" class="form-control" placeholder="Firstname"
+        value="{{form.initial.first_name}}">
+
+    <h5 class="font-weight-normal">Last name</h5>
+    <input type="text" name="last_name" id="inputLast_name" class="form-control" placeholder="Lastname"
+        value="{{form.initial.last_name}}">
+
+    {% include 'snippets/error_messages.html' %}
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Save changes</button>
+
+</form>
+
+<div class=d-flex flex-column>
+    <a class="m-auto" href="{% url 'password_change' %}">Change password</a>
+</div>
+
+
+
+
+
+{% endblock content %}
