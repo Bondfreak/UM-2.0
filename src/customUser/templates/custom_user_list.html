@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope=col">Image</th>
+            <th scope=col">Email</th>
+            <th scope=col">First name</th>
+            <th scope=col">Last name</th>
+            <th scope=col">Edit</th>
+            <th scope=col">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for custom_user in custom_user_list %}
+        <tr>
+            <td> <img class="avatar" src="{{ custom_user.profile_picture.url }}" alt="..." class="img-fluid"></td>
+            <td>{{custom_user.email}}</td>
+            <td>{{custom_user.first_name}}</td>
+            <td>{{custom_user.last_name}}</td>
+            <td><a href="{% url 'customUserUpdate' pk=custom_user.pk %}" </a><button
+                        class="btn btn-primary ">Update</button>
+            </td>
+            <td><a href="{% url 'customUserDelete' pk=custom_user.pk %}" </a><button
+                        class="btn btn-primary ">Delete</button>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock content %}
